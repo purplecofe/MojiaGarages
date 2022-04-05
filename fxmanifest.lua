@@ -8,7 +8,7 @@ description 'MojiaGarages - Best advanced garages for QB-Core Framework'
 shared_scripts {
     'config.lua',
     '@qb-core/shared/locale.lua',
-    'locales/en.lua' -- Change this to your preferred language
+    'locales/zh.lua' -- Change this to your preferred language
 }
 client_scripts {
     '@PolyZone/client.lua',

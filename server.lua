@@ -241,7 +241,7 @@ end)
 QBCore.Functions.CreateCallback('MojiaGarages:server:GetimpoundVehicles', function(source, cb) -- Get a list of impounded vehicles
 	MySQL.Async.fetchAll('SELECT * FROM player_vehicles WHERE state = 2',{}, function(result)
 		if result[1] ~= nil then
-			cb(result)
+			cb(result, os.time())
 		else
 			cb(nil)
 		end
@@ -269,17 +269,17 @@ QBCore.Functions.CreateCallback('qb-garage:server:GetPlayerVehicles', function(s
 
                 if v.state == 0 then
                     if v.depotprice == 0 then
-						VehicleGarage = 'None'
-						v.state = 'Out'
+						VehicleGarage = '無'
+						v.state = '不在車庫內'
 					else
-						VehicleGarage = 'Depot'
-						v.state = 'In Depot'
+						VehicleGarage = '拖吊場'
+						v.state = '被拖吊'
 					end
                 elseif v.state == 1 then
-                    v.state = 'In'
+                    v.state = '在車庫內'
                 elseif v.state == 2 then
-					VehicleGarage = 'Police Depot'
-					v.state = 'Impounded'
+					VehicleGarage = '警局扣押場'
+					v.state = '警方扣押'
                 end
                 
                 local fullname 
@@ -297,7 +297,7 @@ QBCore.Functions.CreateCallback('qb-garage:server:GetPlayerVehicles', function(s
                     state = v.state,
                     fuel = modifications.fuelLevel,
                     engine = modifications.engineHealth,
-                    body = modifications.bodyHealth
+                    body = modifications.bodyHealth,
                 }
             end
             cb(Vehicles)
