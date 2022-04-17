@@ -211,7 +211,7 @@ QBCore.Functions.CreateCallback('MojiaGarages:server:getVehicleData', function(s
 			plate
 		}, function(result)
 		if result[1] then
-			 cb(result[1])
+			cb(result[1])
 		else
 			cb(false)
 		end
@@ -676,7 +676,7 @@ function RefreshVehicles()
 		for k, v in pairs(result) do
 			local vehspawned = true
 			local loadedVehicles = GetAllVehicles()
-			local loadedVehicle = TryGetLoadedVehicle(plate, loadedVehicles)
+			local loadedVehicle = TryGetLoadedVehicle(v.plate, loadedVehicles)
 			if loadedVehicle ~= nil then -- vehicle found
 				vehspawned = true
 			else
@@ -698,3 +698,6 @@ RegisterNetEvent('MojiaGarages:server:refreshVehicles', function()
 	RefreshVehicles()
 end)
 
+RegisterNetEvent('MojiaGarages:server:updateVehicleKey', function(plate)
+	TriggerClientEvent('MojiaGarages:client:updateVehicleKey', -1, plate) -- Update vehicle key for qb-vehiclekey
+end)

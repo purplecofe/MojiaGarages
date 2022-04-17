@@ -1495,7 +1495,7 @@ end)
 
 RegisterNetEvent('MojiaGarages:client:updateVehicleKey', function(plate)-- Update vehicle key for qb-vehiclekey
     QBCore.Functions.TriggerCallback('MojiaGarages:server:getVehicleData', function(owner)
-        if owner ~= nil then
+		if owner then
             TriggerServerEvent('MojiaGarages:server:updateOutsiteVehicleKeys', plate, owner.citizenid)
         end
     end, plate)
@@ -1620,11 +1620,6 @@ CreateThread(function()-- Check if the player is in the garage area or not
     end
 end)
 
-
-
-
-
-
 local function GetNearOusiteVehicle()
 	local near = nil
 	local distance = 10000
@@ -1668,7 +1663,11 @@ function SpawnVehicles(vehdata)
 			QBCore.Functions.SpawnVehicle(vehdata.model, function(veh)
 				SetVehicleModifications(veh, vehdata.mods)
 				SetEntityRotation(veh, vehdata.rotation)
-				exports['LegacyFuel']:SetFuel(veh, vehdata.mods.fuelLevel)			
+				exports['LegacyFuel']:SetFuel(veh, vehdata.mods.fuelLevel)
+				local plate = QBCore.Functions.GetPlate(veh)
+				if not UsingMojiaVehiclekeys then
+					TriggerServerEvent('MojiaGarages:server:updateVehicleKey', plate)
+				end
 			end, vehdata.position, true)
 		end		
 	end)
