@@ -1493,14 +1493,6 @@ RegisterNetEvent('MojiaGarages:client:HideJobVeh', function()-- Hide vehicle for
     end
 end)
 
-RegisterNetEvent('MojiaGarages:client:updateVehicleKey', function(plate)-- Update vehicle key for qb-vehiclekey
-    QBCore.Functions.TriggerCallback('MojiaGarages:server:getVehicleData', function(owner)
-		if owner then
-            TriggerServerEvent('MojiaGarages:server:updateOutsiteVehicleKeys', plate, owner.citizenid)
-        end
-    end, plate)
-end)
-
 RegisterNetEvent('MojiaGarages:client:openGarageMenu', function(data)
     local vehicleMenu = {
         {
@@ -1666,7 +1658,7 @@ function SpawnVehicles(vehdata)
 				exports['lj-fuel']:SetFuel(veh, vehdata.mods.fuelLevel)
 				local plate = QBCore.Functions.GetPlate(veh)
 				if not UsingMojiaVehiclekeys then
-					TriggerServerEvent('MojiaGarages:server:updateVehicleKey', plate)
+					TriggerServerEvent('MojiaGarages:server:updateVehicleKey')
 				end
 			end, vehdata.position, true)
 		end		

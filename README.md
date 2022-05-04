@@ -346,56 +346,10 @@ RegisterNetEvent('qb-houses:server:buyHouse', function(house)
 end)
 ```
 #### qb-vehiclekeys:
-- Edit qb-vehiclekeys\client\main.lua:
-
-Add exports:
+- Add event to  qb-vehiclekeys\client\main.lua:
 ```
-exports('HasVehicleKey', HasVehicleKey)
-```
-Right below:
-```
-local function HasVehicleKey(plate)
-	QBCore.Functions.TriggerCallback('vehiclekeys:server:CheckHasKey', function(result)
-		if result then
-			HasVehicleKey = true
-		else
-			HasVehicleKey = false
-		end
-	end, plate)
-	return HasVehicleKey
-end
-exports('HasVehicleKey', HasVehicleKey)
-```
-And now you can check your vehicle key by:
-```
-exports["qb-vehiclekeys"]:HasVehicleKey(plate)
-```
-- Add event to qb-vehiclekeys\server\main.lua:
-```
-RegisterNetEvent('MojiaGarages:server:updateOutsiteVehicleKeys', function(plate, citizenid) --Update vehicle Keys for qb-vehicle key
-    if plate and citizenid then
-        if VehicleList then
-            -- VehicleList exists so check for a plate
-            local val = VehicleList[plate]
-            if val then
-                -- The plate exists
-                VehicleList[plate].owners[citizenid] = true
-            else
-                -- Plate not currently tracked so store a new one with one owner
-                VehicleList[plate] = {
-                    owners = {}
-                }
-                VehicleList[plate].owners[citizenid] = true
-            end
-        else
-            -- Initialize new VehicleList
-            VehicleList = {}
-            VehicleList[plate] = {
-                owners = {}
-            }
-            VehicleList[plate].owners[citizenid] = true
-        end
-    end
+RegisterNetEvent('MojiaGarages:client:updateVehicleKey', function() -- Update vehicle key for qb-vehiclekey
+	GetKeys()
 end)
 ```
 ### Event for F1 menu:
@@ -601,6 +555,9 @@ if exports["qb-vehiclekeys"]:HasVehicleKey(plate) then
 
 ## Note:
 - This script is completely free for community, it is strictly forbidden to use this script for commercial purposes.
-- If you want to offer me a cup of coffee, you can donate to me through: [https://www.buymeacoffee.com/hoangducdt](https://www.buymeacoffee.com/hoangducdt)
+- If you want to offer me a cup of coffee, you can donate to me through:
+    [https://www.buymeacoffee.com/hoangducdt](https://www.buymeacoffee.com/hoangducdt)
+    or [paypal.me/hoangducdt](paypal.me/hoangducdt)
 - Follow me on [My Github](https://github.com/hoangducdt) or subscribe to [My Youtube Channel](https://www.youtube.com/channel/UCFIsOgj9zvEWAwFTPRT5mbQ) for latest updates
 - My Discord: ✯✯✯✯✯#8386
+- My Discord Channel: [https://discord.gg/hD3EFzpjfq](https://discord.gg/hD3EFzpjfq)
