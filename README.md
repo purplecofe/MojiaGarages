@@ -1,3 +1,4 @@
+# Updates to qb-core versions after April 26 will not be supported, any modifications to be compatible with qb-core versions after that time will be made by everyone themselves.
 # MojiaGarages
 🅿 Best advanced garages for QB-Core Framework 🅿
 
@@ -351,6 +352,14 @@ end)
 RegisterNetEvent('MojiaGarages:client:updateVehicleKey', function() -- Update vehicle key for qb-vehiclekey
 	GetKeys()
 end)
+
+-- Goto exports('HasKeys', HasKeys) And move it under the function HasKeys. Like this
+
+function HasKeys(plate)
+    return KeysList[plate]
+end
+exports('HasKeys', HasKeys)
+
 ```
 ### Event for F1 menu:
 #### qb-radialmenu:
@@ -390,7 +399,7 @@ local function SetupGaragesMenu()
 		end
 		if veh ~= nil then
 			local plate = QBCore.Functions.GetPlate(veh)
-			if exports["qb-vehiclekeys"]:HasVehicleKey(plate) then
+			if exports["qb-vehiclekeys"]:HasKeys(plate) then
 				if canStoreVehicle then
 					GaragesMenu.items[#GaragesMenu.items+1] = {
 						id = 'storeVehicle',
@@ -429,7 +438,7 @@ local function SetupGaragesMenu()
 			end
 			if veh ~= nil and veh == lastJobVehicle then
 				local plate = QBCore.Functions.GetPlate(veh)
-				if exports["qb-vehiclekeys"]:HasVehicleKey(plate) then --disable if use MojiaVehicleKeys
+				if exports["qb-vehiclekeys"]:HasKeys(plate) then --disable if use MojiaVehicleKeys
 			--if exports['MojiaVehicleKeys']:CheckHasKey(plate) then --enable if use MojiaVehicleKeys
 					GaragesMenu.items[#GaragesMenu.items+1] = {
 						id = 'hidejobvehicle',
@@ -500,7 +509,7 @@ if canStoreVehicle then
 ```
 You should have more vehicle key check function here:
 ```
-if exports["qb-vehiclekeys"]:HasVehicleKey(plate) then
+if exports["qb-vehiclekeys"]:HasKeys(plate) then
 ```
 ##### Open vehicle list for work:
 - Event:
@@ -543,7 +552,7 @@ if lastJobVehicle ~= nil then
 ```
 You should have more vehicle key check function here:
 ```
-if exports["qb-vehiclekeys"]:HasVehicleKey(plate) then
+if exports["qb-vehiclekeys"]:HasKeys(plate) then
 ```
 ### In progress:
 - Parking system for boats
