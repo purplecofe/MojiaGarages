@@ -1584,7 +1584,7 @@ CreateThread(function()-- Check if the player is in the garage area or not
             for k, v in pairs(GarageLocation) do
                 if GarageLocation[k] then
                     if GarageLocation[k]:isPointInside(coord) then
-                        exports['qb-core']:DrawText(Garages[k].label, "left")
+                        exports['ps-ui']:DisplayText(Garages[k].label, "primary")
                         inGarageStation = true
                         currentgarage = k
                         if Garages[k].job ~= nil then
@@ -1595,7 +1595,7 @@ CreateThread(function()-- Check if the player is in the garage area or not
                         while inGarageStation do
                             local InZoneCoordS = GetEntityCoords(Ped)
                             if not GarageLocation[k]:isPointInside(InZoneCoordS) then
-                                exports['qb-core']:HideText()
+                                exports['ps-ui']:HideText()
                                 inGarageStation = false
                                 currentgarage = nil
                                 if PlayerData.job and inJobStation[IsPoliceJob(PlayerData.job.name)] then
