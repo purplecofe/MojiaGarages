@@ -18,7 +18,7 @@ local Translations = {
         garage_shared_menu_header = '🚘| 公用車庫',
         close_menu = '❌| 關閉',
         vehicle_info = '車牌: %{plate}<br>油量: %{fuel}%<br>引擎: %{engine}%<br>車體: %{body}%',
-        vehicle_info_and_depot = '車牌: %{plate}<br>可領取日: %{takeoutdate}',
+        vehicle_info_and_depot = '車牌: %{plate}<br>扣押日期: %{impoundDate}<br>可領取日: %{takeoutdate}',
         vehicle_info_and_price = '領取金額: $%{price}<br>車牌: %{plate}<br>油量: %{fuel}%<br>引擎: %{engine}%<br>車體: %{body}%',
     }
 }

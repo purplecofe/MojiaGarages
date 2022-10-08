@@ -1156,9 +1156,26 @@ JobVeh = {
                     },
                 },
             },
-            useJobspawnPoint = false, --[true: use the spawn point installed below] [false: use job garages spawn point]
+            useJobspawnPoint = true, --[true: use the spawn point installed below] [false: use job garages spawn point]
             spawnPoint = {
-            
+                vector4(445.92, -996.92, 24.96, 270.5),
+                vector4(445.92, -994.25, 24.96, 270.33),
+                vector4(446.08, -991.53, 24.96, 269.54),
+                vector4(446.1, -988.8, 24.96, 271.8),
+                vector4(445.96, -986.21, 24.96, 270.85),
+                vector4(436.71, -986.18, 24.96, 90.59),
+                vector4(437.24, -988.88, 24.96, 90.1),
+                vector4(437.01, -991.53, 24.96, 90.52),
+                vector4(436.69, -994.28, 24.96, 90.93),
+                vector4(437.26, -996.98, 24.96, 89.1),
+                vector4(425.79, -997.06, 24.96, 270.41),
+                vector4(425.88, -994.43, 24.96, 270.01),
+                vector4(426.06, -991.73, 24.96, 269.92),
+                vector4(426.17, -989.05, 24.96, 269.0),
+                vector4(425.91, -984.28, 24.96, 269.34),
+                vector4(425.86, -981.6, 24.96, 269.16),
+                vector4(425.93, -978.74, 24.96, 271.11),
+                vector4(426.03, -976.17, 24.96, 270.27),
             },
             plate = 'CSTP' -- the first four letters of the license plate
         },
