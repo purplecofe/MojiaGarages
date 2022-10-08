@@ -258,12 +258,12 @@ QBCore.Functions.CreateCallback('MojiaGarages:server:GetimpoundVehicles', functi
                 vehicles[#vehicles + 1] = {
                     vehicle = result[i].vehicle,
                     plate = result[i].plate,
-                    impoundDate = os.date("%Y/%m/%d %H:%M:%S", result[i].impoundDate / 1000),
-					takeoutDate = os.date("%Y/%m/%d %H:%M:%S", result[i].takeoutDate / 1000),
-                    reason = result[i].impoundReason,
+                    startDate = os.date("%Y/%m/%d %H:%M:%S", result[i].startdate),
+					endDate = os.date("%Y/%m/%d %H:%M:%S", result[i].enddate),
+                    reason = result[i].reason,
 					mods = result[i].mods,
 					state = result[i].state,
-					canTakeout = os.time() >= result[i].takeoutDate / 1000,
+					canTakeout = os.time() >= result[i].enddate,
 					depotprice = result[i].depotprice,
                 }
             end

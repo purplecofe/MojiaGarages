@@ -41,12 +41,12 @@ RegisterNetEvent('qb-garages:client:RecentlyImpounded', function()
             for i = 1, #result do
                 local vehicle = result[i].vehicle
                 local plate = result[i].plate
-                local impoundDate = result[i].impoundDate
+                local startDate = result[i].startDate
                 local reason = result[i].reason
                 Menu[#Menu + 1] = {
                     header = QBCore.Shared.Vehicles[vehicle].name .. ' | ' .. plate,
-                    txt = "扣押日期: " .. impoundDate .. "<br>" .. "扣押原因: " .. reason,
-                    params = {event = 'qb-garages:client:RecentlyImpounded'}
+                    txt = "扣押日期: " .. startDate .. "<br>" .. "扣押原因: " .. reason,
+                    params = {event = ''}
                 }
             end
         else
@@ -64,12 +64,12 @@ RegisterNetEvent('qb-garages:client:PersonalVehicles', function()
             for i = 1, #result do
                 local vehicle = result[i].vehicle
                 local plate = result[i].plate
-                local impoundDate = result[i].impoundDate
+                local startDate = result[i].startDate
                 local reason = result[i].reason
                 Menu[#Menu + 1] = {
                     header = QBCore.Shared.Vehicles[vehicle].name .. ' | ' .. plate,
-                    txt = "扣押日期: " .. impoundDate .. "<br>" .. "扣押原因: " .. reason,
-                    params = {event = 'qb-garages:client:RecentlyImpounded'}
+                    txt = "扣押日期: " .. startDate .. "<br>" .. "扣押原因: " .. reason,
+                    params = {event = 'qb-garages:client:PersonalVehicleDetail', args = {vehicle = result[i]}}
                 }
             end
         else
@@ -77,6 +77,17 @@ RegisterNetEvent('qb-garages:client:PersonalVehicles', function()
         end
         exports['qb-menu']:openMenu(Menu)
     end)
+end)
+
+RegisterNetEvent('qb-garages:client:PersonalVehicleDetail', function(data)
+    local Menu = {}
+    Menu[#Menu + 1] = {header = "← 返回", txt = "", params = {event = "qb-garages:client:PersonalVehicles"}}
+    Menu[#Menu + 1] = {header = "車輛資訊", isMenuHeader = true, txt = "車牌: " .. data.vehicle.plate, params = {event = ""}}
+    Menu[#Menu + 1] = {header = "扣押資訊", isMenuHeader = true, txt = "原因: " .. data.vehicle.reason .. " | " .. "執行者: " .. data.vehicle.worker, params = {event = ""}}
+    Menu[#Menu + 1] = {header = "留置資訊", isMenuHeader = true, txt = "記點: " .. data.vehicle.reason .. " | " .. "留置至: " .. data.vehicle.endDate, params = {event = ""}}
+    Menu[#Menu + 1] = {header = "留置費", isMenuHeader = true, txt = "總金額: " .. data.vehicle.price .. " | " .. "稅率: 13%" .. " | " .. "已繳: " .. "TODO" .. " | " .. "已釋放: " .. "TODO", params = {event = ""}}
+    -- Menu[#Menu + 1] = {header = "取回扣押車輛", txt = "", params = {event = ""}}
+    exports['qb-menu']:openMenu(Menu)
 end)
 
 RegisterNetEvent('qb-garages:client:BrowseByPlate', function()
@@ -95,12 +106,12 @@ RegisterNetEvent('qb-garages:client:BrowseByPlate', function()
             for i = 1, #result do
                 local vehicle = result[i].vehicle
                 local plate = result[i].plate
-                local impoundDate = result[i].impoundDate
+                local startDate = result[i].startDate
                 local reason = result[i].reason
                 Menu[#Menu + 1] = {
                     header = QBCore.Shared.Vehicles[vehicle].name .. ' | ' .. plate,
-                    txt = "扣押日期: " .. impoundDate .. "<br>" .. "扣押原因: " .. reason,
-                    params = {event = 'qb-garages:client:RecentlyImpounded'}
+                    txt = "扣押日期: " .. startDate .. "<br>" .. "扣押原因: " .. reason,
+                    params = {event = 'qb-garages:client:'}
                 }
             end
         else
@@ -112,7 +123,7 @@ end)
 
 RegisterNetEvent('qb-garages:client:BrowseByOwner', function()
     local input = exports['qb-input']:ShowInput({
-        header = '車牌',
+        header = 'State ID',
         submitText = '確定',
         inputs = {
             {type = 'text', isRequired = true, name = 'cid', text = '輸入 State ID'}
@@ -126,12 +137,12 @@ RegisterNetEvent('qb-garages:client:BrowseByOwner', function()
             for i = 1, #result do
                 local vehicle = result[i].vehicle
                 local plate = result[i].plate
-                local impoundDate = result[i].impoundDate
+                local startDate = result[i].startDate
                 local reason = result[i].reason
                 Menu[#Menu + 1] = {
                     header = QBCore.Shared.Vehicles[vehicle].name .. ' | ' .. plate,
-                    txt = "扣押日期: " .. impoundDate .. "<br>" .. "扣押原因: " .. reason,
-                    params = {event = 'qb-garages:client:RecentlyImpounded'}
+                    txt = "扣押日期: " .. startDate .. "<br>" .. "扣押原因: " .. reason,
+                    params = {event = 'qb-garages:client:'}
                 }
             end
         else

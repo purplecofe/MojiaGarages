@@ -1136,7 +1136,7 @@ RegisterNetEvent('MojiaGarages:client:openGarage', function()-- Garages Menu
                             local content
                             if not v.canTakeout then
                                 header = "[警方扣押] " .. QBCore.Shared.Vehicles[v.vehicle].name
-                                content = Lang:t('info.vehicle_info_and_depot', {plate = v.plate, impoundDate = v.impoundDate, takeoutdate = v.takeoutDate})
+                                content = Lang:t('info.vehicle_info_and_depot', {plate = v.plate, impoundDate = v.startDate, takeoutdate = v.endDate})
                             else
                                 header = QBCore.Shared.Vehicles[v.vehicle].name
                                 content = Lang:t('info.vehicle_info', {plate = v.plate, fuel = currentFuel, engine = enginePercent, body = bodyPercent})
